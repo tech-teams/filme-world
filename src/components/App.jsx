@@ -11,7 +11,8 @@ function App() {
   const classes = useStyles();
   const alanBtnContainer = useRef();
 
-  // useAlan();
+  if(process.env.REACT_APP_ALAN_SDK_KEY)
+    useAlan();
 
   return (
     <div className={classes.root}>

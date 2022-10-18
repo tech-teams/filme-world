@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, Rating } from '@mui/material';
+import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, Rating, useMediaQuery } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlined, Remove, ArrowBack } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ import genreIcons from '../../assets/genres';
 
 function MovieInfo() {
   const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width:600px)');
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { id } = useParams();
@@ -92,7 +93,9 @@ function MovieInfo() {
               {data?.vote_average} / 10
             </Typography>
           </Box>
-          <Typography gutterBottom variant="h6" align="center">{data?.runtime}min</Typography>
+          <Typography variant='h5' gutterBottom align='center'>
+               {data?.runtime}min | {data?.release_date} | {data?.spoken_languages[0].name}
+            </Typography>
         </Grid>
         <Grid item className={classes.genresContainer}>
           {data?.genres?.map((genre) => (
@@ -114,8 +117,8 @@ function MovieInfo() {
                 src={`https://image.tmdb.org/t/p/w500/${character.profile_path}`}
                 alt={character.name}
               />
-              <Typography color="textPrimary" align="center">{character?.name}</Typography>
-              <Typography color="textSecondary" align="center">
+              <Typography color="textPrimary">{character?.name}</Typography>
+              <Typography color="textSecondary">
                 {character.character.split('/')[0]}
               </Typography>
             </Grid>
@@ -124,15 +127,15 @@ function MovieInfo() {
         </Grid>
         <Grid item container style={{ marginTop: '2rem' }}>
           <div className={classes.buttonContainer}>
-            <Grid item xs={12} sm={6} className={classes.buttonContainer}>
-              <ButtonGroup size="small" variant="outlined">
+            <Grid item xs={12} sm={6} className={classes.buttonContainer} style={isMobile ? { marginBottom: '2rem' } : {} }>
+              <ButtonGroup size="medium" variant="outlined">
                 <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>Website</Button>
                 <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>IMDB</Button>
                 <Button onClick={() => setOpen(true)} href="#" endIcon={<Theaters />}>Trailer</Button>
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} className={classes.buttonContainer}>
-              <ButtonGroup size="small" variant="outlined">
+              <ButtonGroup size="medium" variant="outlined">
                 <Button onClick={addToFavorites} endIcon={isMovieFavorited ? <FavoriteBorderOutlined /> : <Favorite />}>
                   {isMovieFavorited ? 'Unfavorite' : 'Favorite'}
                 </Button>

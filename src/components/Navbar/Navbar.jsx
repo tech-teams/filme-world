@@ -63,7 +63,7 @@ function Navbar() {
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          {!isMobile && <Search />}
+          {!isMobile && <Search className={classes.search}/>}
           <div>
             {!isAuthenticated ? (
               <Button color="inherit" onClick={fetchToken}>
@@ -85,7 +85,7 @@ function Navbar() {
               </Button>
             )}
           </div>
-          {isMobile && <Search />}
+          {isMobile && <Search className={classes.search}/>}
         </Toolbar>
       </AppBar>
       <div>

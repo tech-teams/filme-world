@@ -24,6 +24,7 @@ function Search() {
   return (
     <div className={classes.searchContainer}>
       <TextField
+        className={classes.textField}
         onKeyPress={handleKeyPress}
         value={query}
         onChange={(e) => setQuery(e.target.value)}

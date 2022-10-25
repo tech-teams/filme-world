@@ -30,8 +30,9 @@ export default makeStyles((theme) => ({
     borderRadius: '20px',
     height: '300px',
     marginBottom: '10px',
+    transition: 'transform 0.2s',
     '&:hover': {
-      transform: 'scale(1.05)',
+      transform: 'scale(1.1)',
     },
   },
 }));

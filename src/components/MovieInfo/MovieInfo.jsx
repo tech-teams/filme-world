@@ -153,7 +153,7 @@ function MovieInfo() {
         </Grid>
       </Grid>
       <Box marginTop="5rem" width="100%">
-        <Typography variant="h3" gutterBottom align="center">
+        <Typography variant="h4" gutterBottom align="center">
           You might also like
         </Typography>
         {recommendations

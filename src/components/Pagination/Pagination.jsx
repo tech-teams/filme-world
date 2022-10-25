@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button } from '@mui/material';
-
+import { KeyboardDoubleArrowRight as ArrowRight, KeyboardDoubleArrowLeft as ArrowLeft } from '@mui/icons-material';
 import useStyles from './styles';
 
 function Pagination({ currentPage, setPage, totalPages }) {
@@ -17,9 +17,13 @@ function Pagination({ currentPage, setPage, totalPages }) {
 
   return (
     <div className={classes.container}>
-      <Button onClick={handlePrev} variant="contained" className={classes.button} color="primary" type="button">Prev</Button>
-      <Typography variant="h4" className={classes.pageNumber}>{currentPage}</Typography>
-      <Button onClick={handleNext} variant="contained" className={classes.button} color="primary" type="button">Next</Button>
+      <Button disabled={currentPage === 1} onClick={handlePrev} variant="contained" className={classes.button} color="primary" type="button">
+        <ArrowLeft />
+      </Button>
+      <Typography variant="h5" className={classes.pageNumber}>{currentPage}</Typography>
+      <Button onClick={handleNext} variant="contained" className={classes.button} color="primary" type="button">
+        <ArrowRight />
+      </Button>
     </div>
   );
 }

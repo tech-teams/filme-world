@@ -7,7 +7,8 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   button: {
-    margin: '30px 2px',
+    margin: '30px 2px !important',
+    padding: "5px 0 !important"
   },
   pageNumber: {
     margin: '0 20px !important',
